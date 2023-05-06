@@ -60,6 +60,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <sys/ioctl.h>
+#include <termios.h>
 #include <editline/readline.h>
 #include <histedit.h>
 

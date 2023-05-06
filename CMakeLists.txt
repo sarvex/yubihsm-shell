@@ -26,6 +26,10 @@ project (yubihsm-shell)
 option(BUILD_ONLY_LIB "Library only build" OFF)
 option(SUPRESS_MSVC_WARNINGS "Suppresses a lot of the warnings when compiling with MSVC" ON)
 
+# Get the ILLUMOS variable set iff we are on an illumos system, before we make
+# other decisions about compiler and linker flags:
+include(${CMAKE_SOURCE_DIR}/cmake/illumos.cmake)
+
 include(${CMAKE_SOURCE_DIR}/cmake/SecurityFlags.cmake)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
@@ -206,6 +210,8 @@ if(NOT BUILD_ONLY_LIB)
     set (LIBPCSC_LDFLAGS "winscard.lib")
   elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(LIBPCSC_LDFLAGS "-Wl,-framework -Wl,PCSC")
+  elseif(ILLUMOS)
+    set(LIBPCSC_LDFLAGS "-lpcsc")
   endif()
 
   if(ENABLE_YKHSM_AUTH)

@@ -19,7 +19,7 @@
 
 #include <stdbool.h>
 
-#if defined(_WIN32)
+#if defined(_WIN32) || defined(__illumos__)
 #include <winscard.h>
 #else
 #include <PCSC/wintypes.h>

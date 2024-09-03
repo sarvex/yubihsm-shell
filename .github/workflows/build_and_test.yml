@@ -361,7 +361,7 @@ jobs:
           echo "ARTIFACT_NAME=yubihsm-shell_${ESCAPED_IMAGE}_${CC}" >> $GITHUB_ENV
 
       - name: download artifacts from the build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: "${{ env.ARTIFACT_NAME }}"
 
